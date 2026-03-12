@@ -23,6 +23,7 @@ import {
   X
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import Photo from '../aa38155e-67bc-464e-a0f7-98a935608713.jpg';
 
 // import the profile image so Vite can bundle it
 import Photo from '../shri.jpg';
@@ -164,10 +165,10 @@ export default function App() {
               <div className="w-full h-full rounded-[2rem] overflow-hidden bg-[#0d9488] flex items-center justify-center relative">
                 {/* Background pattern for the photo area */}
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-
-                <img
+                
+                <img 
                   src={Photo}
-                  alt="Shrinithi V J"
+                  alt="Shrinithi V J" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
