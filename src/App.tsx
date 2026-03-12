@@ -161,7 +161,7 @@ export default function App() {
                 <img 
                   src={Photo}
                   alt="Shrinithi V J" 
-                  className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 scale-110 group-hover:scale-100"
+                  className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
