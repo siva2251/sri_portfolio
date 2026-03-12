@@ -40,7 +40,6 @@ const SkillBadge = ({ name, icon: Icon }: { name: string, icon: any }) => (
     <span className="text-slate-700 font-medium">{name}</span>
   </div>
 );
-
 const EducationCard = ({
   institution,
   degree,
