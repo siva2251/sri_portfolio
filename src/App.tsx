@@ -121,7 +121,7 @@ export default function App() {
               Shrinithi <span className="text-indigo-600">V J</span>
             </h1>
             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-lg">
-              Dedicated Computer Science student and Cybersecurity enthusiast currently pursuing a 
+              Dedicated B.sc IT student and Cybersecurity enthusiast currently pursuing a 
               Bachelor's degree at Sankara College. As a State Runner in Volleyball and a State-level Gymnast, 
               I bring a disciplined, team-oriented approach to my academic pursuits and competitive 
               problem-solving. I am passionate about leveraging technology to build secure 
