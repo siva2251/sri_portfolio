@@ -3,25 +3,29 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { 
-  Mail, 
-  MapPin, 
-  GraduationCap, 
-  Code2, 
-  Cpu, 
-  MessageSquare, 
-  Users, 
-  Lightbulb, 
-  Github, 
+import React, { useState } from 'react';
+import {
+  Mail,
+  MapPin,
+  GraduationCap,
+  Code2,
+  Cpu,
+  MessageSquare,
+  Users,
+  Lightbulb,
+  Github,
   Linkedin,
   ChevronRight,
   ShieldCheck,
   Trophy,
   Award,
-  Activity
+  Activity,
+  X
 } from 'lucide-react';
 import { motion } from 'motion/react';
+
+// import the profile image so Vite can bundle it
+import Photo from '../shri.jpg';
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
@@ -37,18 +41,18 @@ const SkillBadge = ({ name, icon: Icon }: { name: string, icon: any }) => (
   </div>
 );
 
-const EducationCard = ({ 
-  institution, 
-  degree, 
-  period, 
-  location, 
-  details 
-}: { 
-  institution: string, 
-  degree: string, 
-  period: string, 
+const EducationCard = ({
+  institution,
+  degree,
+  period,
+  location,
+  details
+}: {
+  institution: string,
+  degree: string,
+  period: string,
   location: string,
-  details?: string 
+  details?: string
 }) => (
   <div className="relative pl-8 pb-12 last:pb-0">
     <div className="absolute left-0 top-0 bottom-0 w-px bg-slate-200"></div>
@@ -70,8 +74,11 @@ const EducationCard = ({
   </div>
 );
 
-const AchievementCard = ({ title, organization, icon: Icon }: { title: string, organization: string, icon: any }) => (
-  <div className="flex items-start gap-4 p-5 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group">
+const AchievementCard = ({ title, organization, icon: Icon, onClick }: { title: string, organization: string, icon: any, onClick?: () => void }) => (
+  <div
+    className={`flex items-start gap-4 p-5 bg-white border border-slate-100 rounded-2xl shadow-sm transition-all group ${onClick ? 'cursor-pointer hover:shadow-md hover:border-indigo-100' : 'hover:shadow-md'}`}
+    onClick={onClick}
+  >
     <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">
       <Icon className="w-6 h-6" />
     </div>
@@ -83,6 +90,8 @@ const AchievementCard = ({ title, organization, icon: Icon }: { title: string, o
 );
 
 export default function App() {
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -94,7 +103,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 scroll-smooth">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-xl font-bold tracking-tight text-indigo-600 cursor-pointer">SVJ.</button>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <button onClick={() => scrollToSection('about')} className="hover:text-indigo-600 transition-colors cursor-pointer">About</button>
@@ -106,10 +115,10 @@ export default function App() {
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto px-6 py-12 md:py-24">
+      <main className="max-w-7xl mx-auto px-6 py-12 md:py-24">
         {/* Hero Section */}
         <section id="about" className="grid md:grid-cols-2 gap-12 items-center mb-32">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -121,15 +130,15 @@ export default function App() {
               Shrinithi <span className="text-indigo-600">V J</span>
             </h1>
             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-lg">
-              Dedicated B.sc IT student and Cybersecurity enthusiast currently pursuing a 
-              Bachelor's degree at Sankara College. As a State Runner in Volleyball and a State-level Gymnast, 
-              I bring a disciplined, team-oriented approach to my academic pursuits and competitive 
-              problem-solving. I am passionate about leveraging technology to build secure 
+              Dedicated B.sc IT student and Cybersecurity enthusiast currently pursuing a
+              Bachelor's degree at Sankara College. As a State Runner in Volleyball and a State-level Gymnast,
+              I bring a disciplined, team-oriented approach to my academic pursuits and competitive
+              problem-solving. I am passionate about leveraging technology to build secure
               and efficient digital solutions.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a 
-                href="mailto:Shrinithivjbscit2025@sankara.ac.in" 
+              <a
+                href="mailto:Shrinithivjbscit2025@sankara.ac.in"
                 className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
               >
                 <Mail className="w-4 h-4" />
@@ -146,7 +155,7 @@ export default function App() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -156,23 +165,23 @@ export default function App() {
               <div className="w-full h-full rounded-[2rem] overflow-hidden bg-[#0d9488] flex items-center justify-center relative">
                 {/* Background pattern for the photo area */}
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-                
-                <img 
-                  src="./aa38155e-67bc-464e-a0f7-98a935608713.jpg" 
-                  alt="Shrinithi V J" 
-                  className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 scale-110 group-hover:scale-100"
+
+                <img
+                  src={Photo}
+                  alt="Shrinithi V J"
+                  className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
             </div>
-            
+
             {/* Premium Decorative Elements with Teal Accents */}
             <div className="absolute -inset-6 bg-gradient-to-tr from-indigo-500/20 via-teal-500/20 to-emerald-500/20 rounded-[3rem] blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -bottom-10 -right-10 w-56 h-56 bg-indigo-600/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
             <div className="absolute -top-10 -left-10 w-56 h-56 bg-teal-600/10 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-            
+
             {/* Floating Badge with Teal Theme */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -right-6 top-12 z-20 bg-white/90 backdrop-blur-sm shadow-2xl rounded-2xl p-4 border border-teal-100 hidden lg:block"
@@ -194,14 +203,14 @@ export default function App() {
         <section id="education" className="mb-32">
           <SectionTitle>Education</SectionTitle>
           <div className="max-w-3xl">
-            <EducationCard 
+            <EducationCard
               institution="Sankara College Of Science And Commerce"
               degree="Bachelor of Science in Information Technology (Bharathiyar University)"
               period="2026 - Present"
               location="Coimbatore, Tamil Nadu"
               details="Currently in 1st Year. Focusing on foundational computer science principles, programming paradigms, and information systems."
             />
-            <EducationCard 
+            <EducationCard
               institution="Suburban Higher Secondary School"
               degree="Higher Secondary Education"
               period="Completed 2025"
@@ -242,45 +251,51 @@ export default function App() {
         <section id="achievements" className="mb-32">
           <SectionTitle>Certifications & Sports</SectionTitle>
           <div className="grid md:grid-cols-2 gap-6">
-            <AchievementCard 
+            <AchievementCard
               title="Volleyball State Runner"
               organization="State Level Championship"
               icon={Trophy}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Gymnastics State Level"
               organization="State Level Competition"
               icon={Activity}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Volleyball Winner (District Level)"
               organization="Annual Sports Day - Sankara College (2025-26)"
               icon={Trophy}
+              onClick={() => setSelectedPdf('/VolleyballWinner.jpeg')}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Python for Data Science"
               organization="Saylor Academy (Jan 2026)"
               icon={Award}
+              onClick={() => setSelectedPdf('/Pythonfordatascience.pdf')}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Data Structures & Algorithms in Python"
               organization="Simplilearn SkillUp (Feb 2026)"
               icon={Award}
+              onClick={() => setSelectedPdf('/DatastructuresandAlgorithmsinpython.pdf')}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Cyber Threat Hunting"
               organization="Infosys Springboard (Nov 2025)"
               icon={ShieldCheck}
+              onClick={() => setSelectedPdf('/Cyberthreathunting.pdf')}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Fundamentals of Information Security"
               organization="Infosys Springboard (Nov 2025)"
               icon={ShieldCheck}
+              onClick={() => setSelectedPdf('/Fundamentalsofinformationsecurity.pdf')}
             />
-            <AchievementCard 
+            <AchievementCard
               title="Introduction to Cyber Security"
               organization="Infosys Springboard (Nov 2025)"
               icon={ShieldCheck}
+              onClick={() => setSelectedPdf('/Introductiontocybersecurity.pdf')}
             />
           </div>
         </section>
@@ -294,15 +309,15 @@ export default function App() {
                 I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
               </p>
               <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                <a 
-                  href="mailto:Shrinithivjbscit2025@sankara.ac.in" 
+                <a
+                  href="mailto:Shrinithivjbscit2025@sankara.ac.in"
                   className="w-full md:w-auto px-8 py-4 bg-white text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-all flex items-center justify-center gap-2"
                 >
                   <Mail className="w-5 h-5" />
                   Send an Email
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/shrinithi-v-j-452ba637b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+                <a
+                  href="https://www.linkedin.com/in/shrinithi-v-j-452ba637b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full md:w-auto px-8 py-4 bg-indigo-700 text-white rounded-xl font-bold hover:bg-indigo-800 transition-all flex items-center justify-center gap-2"
@@ -331,6 +346,45 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* PDF Modal */}
+      {selectedPdf && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm" onClick={() => setSelectedPdf(null)}>
+          <div className="relative w-full max-w-4xl h-[85vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50">
+              <h3 className="font-bold text-lg text-slate-800">Certificate Viewer</h3>
+              <button
+                onClick={() => setSelectedPdf(null)}
+                className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="flex-1 w-full bg-slate-100 p-2 md:p-6 overflow-hidden flex items-center justify-center">
+              {selectedPdf.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+                <img src={selectedPdf} alt="Certificate" className="max-w-full max-h-full rounded-xl object-contain shadow-sm bg-white" />
+              ) : (
+                <iframe
+                  src={`${selectedPdf}#toolbar=0`}
+                  className="w-full h-full rounded-xl border border-slate-200 bg-white"
+                  title="Certificate PDF"
+                />
+              )}
+            </div>
+            <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
+              <a
+                href={selectedPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium"
+              >
+                Open in New Tab
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
