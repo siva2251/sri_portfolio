@@ -22,6 +22,7 @@ import {
   Activity
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import Photo from '../aa38155e-67bc-464e-a0f7-98a935608713.jpg';
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
@@ -158,7 +159,7 @@ export default function App() {
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
                 
                 <img 
-                  src="./aa38155e-67bc-464e-a0f7-98a935608713.jpg" 
+                  src={Photo}
                   alt="Shrinithi V J" 
                   className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 scale-110 group-hover:scale-100"
                   referrerPolicy="no-referrer"
